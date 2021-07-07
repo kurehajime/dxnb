@@ -64,7 +64,7 @@ export class Game {
             createjs.Ticker.addEventListener("tick", (e: createjs.TickerEvent) => { this.handleTick(e) });
             this.sounds["bgm"]?.setLoop(-1)
             this.sounds["bgm"]?.setVolume(0.3)
-            //this.sounds["bgm"]?.play()
+            this.sounds["bgm"]?.play()
             this.cover.UnDraw()
             this.cover.removeAllEventListeners()
         });
@@ -93,10 +93,10 @@ export class Game {
             return
         }
 
-        // // ゲームオーバー判定
-        // if (progressPer > 1) {
-        //     this.gameOver()
-        // }
+        // ゲームオーバー判定
+        if (progressPer > 1) {
+            this.gameOver()
+        }
 
 
         if (!this.isGameOver) {
@@ -171,7 +171,7 @@ export class Game {
         Utils.GetCellArray(cells).forEach(x => {
             if (x.Suit === suit || x.Color === color) {
                 if (x.State === State.Lock) {
-                    x.State = State.PreLock
+                    // x.State = State.PreLock
                 } else if (x.State === State.PreLock) {
                     x.State = State.Live
                 }
@@ -229,8 +229,8 @@ export class Game {
                     this.hold.Suit = suit
                     this.hold.State = state
 
-                    target.State = target.State === State.PreLock ? State.Lock : State.PreLock
-                    this.hold.State = this.hold.State === State.PreLock ? State.Lock : State.PreLock
+                    // target.State = target.State === State.PreLock ? State.Lock : State.PreLock
+                    // this.hold.State = this.hold.State === State.PreLock ? State.Lock : State.PreLock
 
                     // 影
                     this.shadow.IsLive = true
